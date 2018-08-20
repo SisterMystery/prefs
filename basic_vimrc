@@ -1,0 +1,103 @@
+set relativenumber
+set backspace=indent,eol,start
+let g:syntastic_enable_signs=1
+let g:ctrlp_map = '<c-p>'
+let g:ctrlp_cmd = 'CtrlPMixed'
+autocmd BufWritePre *.js :%s/\s\+$//e
+autocmd BufWritePre *.sh :%s/\s\+$//e
+
+filetype plugin on
+set omnifunc=syntaxcomplete#Complete
+"set highlight
+set hlsearch 
+set smartcase
+
+"Now some setting usability?
+nmap <silent> <F1> :NERDTreeToggle<CR>
+
+"set leader keys
+:let mapleader = "\<Space>"
+"some leader ass shit right here
+nnoremap <leader>w :w<cr>
+nnoremap <leader>x :x<cr>
+nnoremap <leader>q :q<cr>
+nnoremap <leader>wa :wa<cr>
+nnoremap <leader>qa :qa<cr>
+nnoremap <leader>xa :xa<cr>
+nnoremap <leader>tn :tabn<cr>
+nnoremap <leader>tp :tabp<cr>
+nnoremap <leader>nt :NERDTreeToggle<CR>
+
+"trix?
+nnoremap <leader>s bve
+"cheat sheet 
+noremap <leader>ch :sp ~/.vim/cheat_sheet<cr>
+" make a new session
+nnoremap <leader>ms :mksession ~/.vim/sessions/ 
+nnoremap <leader>srs :source ~/.vim/sessions
+" Add semicolon to end of line
+nnoremap <leader>; A;<Esc>
+ " Make Y behave like D (copy until end of line, not whole line)
+nnoremap Y y$
+" Hacky tabs
+
+nnoremap <leader>0 10gt
+nnoremap <leader>t1 1gt
+nnoremap <leader>t2 2gt
+nnoremap <leader>t3 3gt
+nnoremap <leader>t4 4gt
+nnoremap <leader>t5 5gt
+nnoremap <leader>t6 6gt
+nnoremap <leader>t7 7gt
+nnoremap <leader>t8 8gt
+nnoremap <leader>t9 9gt
+
+"buffer stuff
+nnoremap <leader>ls :ls<cr>
+nnoremap <leader>b :buffer
+nnoremap <leader>bd :bufdo 
+nnoremap <leader>br <C-^>
+nnoremap <leader>1 :buffer1<cr>
+nnoremap <leader>2 :buffer2<cr>
+nnoremap <leader>3 :buffer3<cr>
+nnoremap <leader>4 :buffer4<cr>
+nnoremap <leader>5 :buffer5<cr>
+nnoremap <leader>6 :buffer6<cr>
+nnoremap <leader>7 :buffer7<cr>
+nnoremap <leader>8 :buffer8<cr>
+nnoremap <leader>9 :buffer9<cr>
+nnoremap <C-n> :bnext<cr>
+nnoremap <C-b> :bprevious<cr>
+"window nav
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-h> <C-w>h
+nnoremap <C-l> <C-w>l
+nnoremap <bar> :vsp<cr>
+nnoremap <leader>sp :sp<cr>
+inoremap jk <Esc>
+
+"location list?
+nnoremap <leader>lo :lopen<cr>
+nnoremap <leader>lc :lclose<cr>
+nnoremap <leader>l1 :ll1<cr>
+nnoremap <leader>l2 :ll2<cr>
+nnoremap <leader>l3 :ll3<cr>
+nnoremap <leader>l4 :ll4<cr>
+nnoremap <leader>l5 :ll5<cr>
+nnoremap <leader>l6 :ll6<cr>
+nnoremap <leader>l7 :ll7<cr>
+nnoremap <leader>l8 :ll8<cr>
+nnoremap <leader>l9 :ll9<cr>
+"highlight OverLength ctermbg=red ctermfg=white guibg=#592929
+"match OverLength /\%81v.\+/
+"set colorcolumn=80
+set softtabstop=4
+set shiftwidth=4
+set tabstop=4
+set expandtab
+set number
+syntax on
+autocmd FileType ruby setlocal expandtab shiftwidth=2 softtabstop=2
+"set background=dark
+"colorscheme evening
