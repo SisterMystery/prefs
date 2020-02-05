@@ -16,6 +16,18 @@ Set-PSReadLineKeyHandler -Key DownArrow -Function HistorySearchForward
 $GLOBAL:dirHistory = @{};
 $GLOBAL:lastDir = "";
 
+function Get-NestLevel {
+    $currentPid = $pid;
+    $nestLevel = 0;
+    $processes = Get-CimInstance -Class Win32_Process -Filter "Name = 'powershell.exe'"  
+    $currentProcess = $processes | ? { $_.ProcessId -match $currentPid }
+    while($processes.ProcessId.Contains($currentProcess.ParentProcessId)){
+        $nestLevel ++;
+        $currentProcess = $processes | ? { $_.ProcessId -match $currentProcess.ParentProcessId }
+    }
+    return $nestLevel
+}
+
 function Get-SoftRandomString {
 Param([int]$length)
 return -Join ((65..90) + (97..122) + (48..57) | Get-Random -Count $length | % {[char]$_})
@@ -36,7 +48,7 @@ function foxy_history_prompt {
     
     "$(get-date -Format "HH:mm:ss") $(Get-Location) <$('3' * ($nestedPromptLevel + 1)) ";
 }
-set-item function:prompt -Value foxy_history_prompt -Force
+set-item Function:\prompt -Value foxy_history_prompt -Force
 
 function cb {
     [CmdletBinding()]
