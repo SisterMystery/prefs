@@ -16,6 +16,7 @@ Set-PSReadLineKeyHandler -Key DownArrow -Function HistorySearchForward
 $GLOBAL:dirHistory = @{};
 $GLOBAL:lastDir = "";
 
+
 function Get-NestLevel {
     $currentPid = $pid;
     $nestLevel = 0;
@@ -27,6 +28,7 @@ function Get-NestLevel {
     }
     return $nestLevel
 }
+$nestLevel = Get-NestLevel
 
 function Get-SoftRandomString {
 Param([int]$length)
@@ -46,7 +48,7 @@ function foxy_history_prompt {
     }
     $GLOBAL:lastDir = $here;
     
-    "$(get-date -Format "HH:mm:ss") $(Get-Location) <$('3' * ($nestedPromptLevel + 1)) ";
+    "$(get-date -Format "HH:mm:ss") $(Get-Location) <$('3' * ($nestLevel + 1)) ";
 }
 set-item Function:\prompt -Value foxy_history_prompt -Force
 
