@@ -20,7 +20,12 @@ $GLOBAL:lastDir = "";
 function Get-NestLevel {
     $currentPid = $pid;
     $nestLevel = 0;
-    $processes = Get-CimInstance -Class Win32_Process -Filter "Name = 'powershell.exe'"  
+    $processes = @()
+    $processes += Get-CimInstance -Class Win32_Process -Filter "Name = 'powershell.exe'"  
+    if($processes.Count -le 1)
+    {
+        return 0
+    }
     $currentProcess = $processes | ? { $_.ProcessId -match $currentPid }
     while($processes.ProcessId.Contains($currentProcess.ParentProcessId)){
         $nestLevel ++;
